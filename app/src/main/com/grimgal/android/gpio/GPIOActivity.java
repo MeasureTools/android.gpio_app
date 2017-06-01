@@ -14,7 +14,7 @@
  * limitations under the License.
  **/
 
-package info.eismango.gpio;
+package com.grimgal.android.gpio;
 
 import android.net.Uri;
 import android.content.ComponentName;
@@ -47,21 +47,21 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
 
-import info.eismango.grimgal.*;
+import com.grimgal.android.framework.*;
 
 public class GPIOActivity extends Activity {
-	
+
 	List<Button> buttons = new ArrayList<Button>();
 	ScrollView   scroll;
 	LinearLayout layout;
 	LayoutParams layoutParams;
-	
+
 	protected void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
-		
-		
+
+
 		// ###### Layout [BEGIN] ######
-		
+
 		this.layout = new LinearLayout(this);
 		{
 			this.layout.setOrientation(LinearLayout.VERTICAL);
@@ -71,7 +71,7 @@ public class GPIOActivity extends Activity {
 			this.scroll.addView(this.layout);
 		}
 		this.setContentView(this.scroll);
-		
+
 		int[] gpios = {33, 23, 29, 30, 22, 18, 21, 190, 191, 192, 174, 173, 171, 172, 189, 210, 209, 19, 28, 31, 25, 24};
 		Arrays.sort(gpios);
 		for (final int gpio : gpios) {
@@ -89,7 +89,7 @@ public class GPIOActivity extends Activity {
 				}
 				String value     = "" + GPIO.create(gpio).getValue();
 				button.setText("GPIO " + gpio + " D("+direction+") V("+value+")");
-				
+
 				OnClickListener buttonClicked = new OnClickListener() {
 					@Override
 					public void onClick(View v) {
@@ -120,7 +120,5 @@ public class GPIOActivity extends Activity {
 			this.buttons.add(button);
 		}
 		// ###### Layout [END] ######
-		
 	}
-	
 }
